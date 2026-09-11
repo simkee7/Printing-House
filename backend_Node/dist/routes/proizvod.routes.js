@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = __importDefault(require("express"));
+var proizvod_controller_1 = require("../controllers/proizvod.controller");
+var proizvodRouter = express_1.default.Router();
+proizvodRouter.route('/pocetna').get(function (req, res) { return new proizvod_controller_1.ProizvodController().pocetna(req, res); });
+proizvodRouter.route('/kategorije').get(function (req, res) { return new proizvod_controller_1.ProizvodController().kategorije(req, res); });
+proizvodRouter.route('/pretraga').post(function (req, res) { return new proizvod_controller_1.ProizvodController().pretraga(req, res); });
+proizvodRouter.route('/svidi').post(function (req, res) { return new proizvod_controller_1.ProizvodController().svidi(req, res); });
+proizvodRouter.route('/nesvidi').post(function (req, res) { return new proizvod_controller_1.ProizvodController().nesvidi(req, res); });
+proizvodRouter.route('/komentarisi').post(function (req, res) { return new proizvod_controller_1.ProizvodController().komentarisi(req, res); });
+proizvodRouter.route('/zaStampariju').post(function (req, res) { return new proizvod_controller_1.ProizvodController().zaStampariju(req, res); });
+proizvodRouter.route('/dodaj').post(function (req, res) { return new proizvod_controller_1.ProizvodController().dodaj(req, res); });
+proizvodRouter.route('/azurirajProizvod').post(function (req, res) { return new proizvod_controller_1.ProizvodController().azurirajProizvod(req, res); });
+proizvodRouter.route('/obrisiProizvod').post(function (req, res) { return new proizvod_controller_1.ProizvodController().obrisiProizvod(req, res); });
+proizvodRouter.route('/ucitajIzFajla').post(function (req, res) { return new proizvod_controller_1.ProizvodController().ucitajIzFajla(req, res); });
+proizvodRouter.route('/otpremiSliku').post(function (req, res) { return new proizvod_controller_1.ProizvodController().otpremiSliku(req, res); });
+proizvodRouter.route('/:id').get(function (req, res) { return new proizvod_controller_1.ProizvodController().detalji(req, res); });
+exports.default = proizvodRouter;

@@ -1,0 +1,309 @@
+[{
+  "_id": {
+    "$oid": "6a86e47c891848ff8ef4e619"
+  },
+  "klijentKorisnickoIme": "petarp",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "naziv": "Pamucna Polo Majica",
+      "kolicina": 2,
+      "tipStampe": "Direktna stampa na tekstil (DTG)",
+      "cenaPoKomadu": 1200,
+      "sifra": "PR-001"
+    },
+    {
+      "naziv": "Keramicka solja 330ml",
+      "kolicina": 3,
+      "tipStampe": "Sublimaciona stampa",
+      "cenaPoKomadu": 320,
+      "sifra": "PR-002"
+    }
+  ],
+  "ukupanIznos": 3360,
+  "status": "naruceno",
+  "datumNarucivanja": {
+    "$date": "2026-08-15T09:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a86e47c891848ff8ef4e61a"
+  },
+  "klijentKorisnickoIme": "petarp",
+  "stamparijaKorisnickoIme": "printstudio",
+  "stavke": [
+    {
+      "naziv": "Vizit karte 300g mat lam.",
+      "kolicina": 500,
+      "tipStampe": "Digitalna stampa",
+      "cenaPoKomadu": 150,
+      "sifra": "PR-004"
+    }
+  ],
+  "ukupanIznos": 75000,
+  "status": "isporuceno",
+  "datumNarucivanja": {
+    "$date": "2026-08-05T14:30:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a86e47c891848ff8ef4e61b"
+  },
+  "klijentKorisnickoIme": "petarp",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "naziv": "Reklamne olovke sa gravurom",
+      "kolicina": 100,
+      "tipStampe": "Tampon stampa",
+      "cenaPoKomadu": 60,
+      "sifra": "PR-010"
+    }
+  ],
+  "ukupanIznos": 6000,
+  "status": "primljeno",
+  "datumNarucivanja": {
+    "$date": "2026-07-20T11:15:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a86e47c891848ff8ef4e61c"
+  },
+  "klijentKorisnickoIme": "grafikaplus",
+  "stamparijaKorisnickoIme": "printstudio",
+  "stavke": [
+    {
+      "naziv": "Poster A2 foto papir",
+      "kolicina": 10,
+      "tipStampe": "Digitalna foto stampa",
+      "cenaPoKomadu": 900,
+      "sifra": "PR-007"
+    }
+  ],
+  "ukupanIznos": 9000,
+  "status": "u stampi",
+  "datumNarucivanja": {
+    "$date": "2026-08-12T16:45:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a882224cfd048a6d1328832"
+  },
+  "klijentKorisnickoIme": "petarp",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "naziv": "Pamucna Polo Majica",
+      "kolicina": 2,
+      "tipStampe": "Direktna stampa na tekstil (DTG)",
+      "cenaPoKomadu": 1550,
+      "sifra": "PR-001"
+    }
+  ],
+  "ukupanIznos": 3100,
+  "status": "placeno",
+  "datumNarucivanja": {
+    "$date": "2026-08-21T10:02:12.757Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a882224cfd048a6d1328833"
+  },
+  "klijentKorisnickoIme": "petarp",
+  "stamparijaKorisnickoIme": "printstudio",
+  "stavke": [
+    {
+      "naziv": "Flajeri A5 sjajni",
+      "kolicina": 67,
+      "tipStampe": "Digitalna stampa",
+      "cenaPoKomadu": 90,
+      "sifra": "PR-005"
+    }
+  ],
+  "ukupanIznos": 6030,
+  "status": "placeno",
+  "datumNarucivanja": {
+    "$date": "2026-08-21T10:02:12.760Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a88799f3be00050c86dd556"
+  },
+  "klijentKorisnickoIme": "petarp",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "sifra": "PR-010",
+      "naziv": "Reklamne olovke sa gravurom",
+      "kolicina": 502,
+      "tipStampe": "Tampon stampa",
+      "cenaPoKomadu": 75
+    }
+  ],
+  "ukupanIznos": 37650,
+  "status": "placeno",
+  "datumNarucivanja": {
+    "$date": "2026-08-21T16:15:27.685Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a889531dd3714fd7952705f"
+  },
+  "klijentKorisnickoIme": "grafikaplus",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "naziv": "Pamucna Polo Majica",
+      "kolicina": 10,
+      "tipStampe": "Kreativne stampe",
+      "cenaPoKomadu": 100
+    }
+  ],
+  "ukupanIznos": 1000,
+  "status": "isporuceno",
+  "datumNarucivanja": {
+    "$date": "2026-08-21T18:13:05.034Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a9c4e100c3769fa14f1f068"
+  },
+  "klijentKorisnickoIme": "no1e",
+  "stamparijaKorisnickoIme": "printstudio",
+  "stavke": [
+    {
+      "sifra": "PR-007",
+      "naziv": "Poster A2 foto papir",
+      "kolicina": 25,
+      "tipStampe": "Digitalna foto stampa",
+      "cenaPoKomadu": 1150
+    }
+  ],
+  "ukupanIznos": 28750,
+  "status": "primljeno",
+  "datumNarucivanja": {
+    "$date": "2026-09-05T17:14:56.587Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a9c5fb00c3769fa14f1f0e8"
+  },
+  "klijentKorisnickoIme": "no1e",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "sifra": "PR-010",
+      "naziv": "Reklamne olovke sa gravurom",
+      "kolicina": 25,
+      "tipStampe": "Tampon stampa",
+      "cenaPoKomadu": 75
+    }
+  ],
+  "ukupanIznos": 1875,
+  "status": "primljeno",
+  "datumNarucivanja": {
+    "$date": "2026-09-05T18:30:08.325Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a9d7cf4c4c8f11f12ea5cf5"
+  },
+  "klijentKorisnickoIme": "no1e",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "sifra": "PR-001",
+      "naziv": "Pamucna Polo Majica",
+      "kolicina": 1,
+      "tipStampe": "Direktna stampa na tekstil (DTG)",
+      "cenaPoKomadu": 1550
+    }
+  ],
+  "ukupanIznos": 1550,
+  "status": "u stampi",
+  "datumNarucivanja": {
+    "$date": "2026-09-06T14:47:16.199Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aa1208cfcb38008bae54d96"
+  },
+  "klijentKorisnickoIme": "no1e",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "sifra": "PR-001",
+      "naziv": "Pamucna Polo Majica",
+      "kolicina": 1,
+      "tipStampe": "Direktna stampa na tekstil (DTG)",
+      "cenaPoKomadu": 1550
+    }
+  ],
+  "ukupanIznos": 1550,
+  "status": "naruceno",
+  "datumNarucivanja": {
+    "$date": "2026-09-09T09:02:04.553Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aa12a5c834a824387eb6488"
+  },
+  "klijentKorisnickoIme": "no1e",
+  "stamparijaKorisnickoIme": "copystudio",
+  "stavke": [
+    {
+      "sifra": "PR-D7838A31",
+      "naziv": "Maska za telefon",
+      "kolicina": 3,
+      "tipStampe": "Stiker",
+      "cenaPoKomadu": 850
+    }
+  ],
+  "ukupanIznos": 2550,
+  "status": "placeno",
+  "datumNarucivanja": {
+    "$date": "2026-09-09T09:43:56.488Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aa132961de332915c177540"
+  },
+  "klijentKorisnickoIme": "grafikaplus",
+  "stamparijaKorisnickoIme": "printstudio",
+  "stavke": [
+    {
+      "naziv": "Vizit karte 300g mat lam.",
+      "kolicina": 1,
+      "tipStampe": "Stampa malih formata",
+      "cenaPoKomadu": 200
+    }
+  ],
+  "ukupanIznos": 200,
+  "status": "u stampi",
+  "datumNarucivanja": {
+    "$date": "2026-09-09T10:19:02.815Z"
+  },
+  "__v": 0
+}]

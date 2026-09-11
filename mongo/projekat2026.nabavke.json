@@ -1,0 +1,82 @@
+[{
+  "_id": {
+    "$oid": "6a889077dd3714fd79527016"
+  },
+  "klijentKorisnickoIme": "grafikaplus",
+  "stavke": [
+    {
+      "naziv": "Pamucna Polo Majica",
+      "kategorija": "Kreativne stampe",
+      "kolicina": 10,
+      "orijentacionaCenaPoKomadu": 1400
+    }
+  ],
+  "rokZaPonude": {
+    "$date": "2026-08-21T18:02:55.111Z"
+  },
+  "status": "zavrsena",
+  "ponude": [
+    {
+      "stamparijaKorisnickoIme": "copystudio",
+      "cenaUkupno": 1000,
+      "rokIsporukeDana": 5,
+      "datumPonude": {
+        "$date": "2026-08-21T17:56:55.454Z"
+      }
+    },
+    {
+      "stamparijaKorisnickoIme": "printstudio",
+      "cenaUkupno": 20000,
+      "rokIsporukeDana": 6,
+      "datumPonude": {
+        "$date": "2026-08-21T17:59:16.996Z"
+      }
+    }
+  ],
+  "datumKreiranja": {
+    "$date": "2026-08-21T17:52:55.136Z"
+  },
+  "__v": 2,
+  "pobednikKorisnickoIme": "copystudio"
+},
+{
+  "_id": {
+    "$oid": "6aa12fe71de332915c177501"
+  },
+  "klijentKorisnickoIme": "grafikaplus",
+  "stavke": [
+    {
+      "naziv": "Vizit karte 300g mat lam.",
+      "kategorija": "Stampa malih formata",
+      "kolicina": 1,
+      "orijentacionaCenaPoKomadu": 170
+    }
+  ],
+  "rokZaPonude": {
+    "$date": "2026-09-09T10:17:35.381Z"
+  },
+  "status": "zavrsena",
+  "ponude": [
+    {
+      "stamparijaKorisnickoIme": "copystudio",
+      "cenaUkupno": 180,
+      "rokIsporukeDana": 3,
+      "datumPonude": {
+        "$date": "2026-09-09T10:08:35.382Z"
+      }
+    },
+    {
+      "stamparijaKorisnickoIme": "printstudio",
+      "cenaUkupno": 200,
+      "rokIsporukeDana": 5,
+      "datumPonude": {
+        "$date": "2026-09-09T10:10:39.014Z"
+      }
+    }
+  ],
+  "datumKreiranja": {
+    "$date": "2026-09-09T10:07:35.385Z"
+  },
+  "__v": 2,
+  "pobednikKorisnickoIme": "printstudio"
+}]

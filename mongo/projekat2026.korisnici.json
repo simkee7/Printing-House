@@ -1,0 +1,128 @@
+[{
+  "_id": {
+    "$oid": "6a86b25c891848ff8ef4e5e0"
+  },
+  "ime": "Admin",
+  "prezime": "Administrator",
+  "korisnickoIme": "admin",
+  "lozinka": "$2b$10$k63Vm4AqM02op0aCnHkpMOnwQQ88Q4B8YtNnWKre0p9T2ergMvsre",
+  "tip": "admin",
+  "telefon": "0641234567",
+  "email": "admin@printinghouse.rs",
+  "aktivan": true,
+  "slika": "default_profile_image.png"
+},
+{
+  "_id": {
+    "$oid": "6a86b25c891848ff8ef4e5e1"
+  },
+  "ime": "Novak",
+  "prezime": "Djokovic",
+  "korisnickoIme": "no1e",
+  "lozinka": "$2b$10$aWjN1jAmcOaQfBFv2MczoOR1GTUrRk3HDnou0sp4b4n1c0hhzz24q",
+  "tip": "fizicko lice",
+  "telefon": "0631112233",
+  "email": "novak.djokovic@gmail.com",
+  "aktivan": true,
+  "slika": "novak.jpeg"
+},
+{
+  "_id": {
+    "$oid": "6a86b25c891848ff8ef4e5e2"
+  },
+  "ime": "Marko",
+  "prezime": "Markovic",
+  "korisnickoIme": "markom",
+  "lozinka": "$2b$10$6zGoXWGkGcPQ3dIga2rSmeQz8zM7VDe3eSJ5NK.1Cu3OulisoVhU6",
+  "tip": "fizicko lice",
+  "telefon": "0644445566",
+  "email": "marko.markovic@gmail.com",
+  "aktivan": false,
+  "slika": "smajli.jpeg"
+},
+{
+  "_id": {
+    "$oid": "6a86b25c891848ff8ef4e5e3"
+  },
+  "ime": "Jovana",
+  "prezime": "Jovanovic",
+  "korisnickoIme": "grafikaplus",
+  "lozinka": "$2b$10$4w7sUETuDA0oLUoEKYgsf.fwzAaoHs9tEBELzxiFCvJldyxY/g4Gq",
+  "tip": "pravno lice",
+  "telefon": "0217778899",
+  "email": "office@grafikaplus.rs",
+  "aktivan": true,
+  "slika": "default_profile_image.png",
+  "nazivInstitucije": "Grafika Plus doo",
+  "adresaSedista": "Bulevar Oslobođenja 45, Novi Sad",
+  "MB": "12345678",
+  "PIB": "123456789"
+},
+{
+  "_id": {
+    "$oid": "6a86b25c891848ff8ef4e5e4"
+  },
+  "ime": "Nikola",
+  "prezime": "Nikolic",
+  "korisnickoIme": "copystudio",
+  "lozinka": "$2b$10$1yJEaSsjOaB91MPAjY7MUOXfHyOYBF7bsSbwpMeZJQzJwhJKK2Z/C",
+  "tip": "stamparija",
+  "telefon": "0113334455",
+  "email": "kontakt@copystudio.rs",
+  "aktivan": true,
+  "slika": "default_profile_image.png",
+  "nazivInstitucije": "Copy Studio Kumanovska",
+  "adresaSedista": "Kumanovska 4, Beograd",
+  "MB": "87654321",
+  "PIB": "987654321"
+},
+{
+  "_id": {
+    "$oid": "6a86b25c891848ff8ef4e5e5"
+  },
+  "ime": "Ana",
+  "prezime": "Anic",
+  "korisnickoIme": "printmasters",
+  "lozinka": "$2b$10$vTkUjFY9BRYaor7oP5hsuugAwE6KeESDukX6bCjF1nxKmuXsP86M2",
+  "tip": "stamparija",
+  "telefon": "0229990011",
+  "email": "info@printmasters.rs",
+  "aktivan": false,
+  "slika": "default_profile_image.png",
+  "nazivInstitucije": "Print Masters",
+  "adresaSedista": "Zmaj Jovina 12, Zrenjanin",
+  "MB": "11223344",
+  "PIB": "112233445"
+},
+{
+  "_id": {
+    "$oid": "6a86db8a891848ff8ef4e5ec"
+  },
+  "ime": "Petar",
+  "prezime": "Petrovic",
+  "korisnickoIme": "petarp",
+  "lozinka": "$2b$10$ZIjMV1H.CTl0GiO4MjApz.lO5fO2KE0IErkKTORJq9eA8AAR9CABW",
+  "tip": "fizicko lice",
+  "telefon": "0631112233",
+  "email": "petar.petrovic@gmail.com",
+  "aktivan": true,
+  "slika": "default_profile_image.png"
+},
+{
+  "_id": {
+    "$oid": "6a86db8a891848ff8ef4e5f1"
+  },
+  "ime": "Milica",
+  "prezime": "Ilic",
+  "korisnickoIme": "printstudio",
+  "lozinka": "$2b$10$sHHOG/QIquoJLN7WOqR/uuJ71s.h9F8Tiko7tyURbQCo5OuTnq1qq",
+  "tip": "stamparija",
+  "telefon": "0216665544",
+  "email": "kontakt@printstudio.rs",
+  "aktivan": true,
+  "slika": "default_profile_image.png",
+  "nazivInstitucije": "Print Studio",
+  "adresaSedista": "Zeleznicka 8, Novi Sad",
+  "MB": "22334455",
+  "PIB": "223344556"
+}]
