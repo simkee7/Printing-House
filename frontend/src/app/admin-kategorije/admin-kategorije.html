@@ -1,0 +1,60 @@
+<h2>Upravljanje kategorijama</h2>
+
+<div class="card">
+  <h3 class="section-title">Nova kategorija</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="nk-naziv">Naziv</label>
+      <input id="nk-naziv" type="text" [(ngModel)]="noviNaziv">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="nk-potkategorije">Potkategorije (odvojene zarezom)</label>
+      <input id="nk-potkategorije" type="text" [(ngModel)]="novePotkategorije">
+    </div>
+    <button (click)="dodaj()">Dodaj kategoriju</button>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Postojece kategorije</h3>
+  <table>
+    <tr>
+      <th>Naziv</th>
+      <th>Potkategorije</th>
+      <th></th>
+    </tr>
+    @for (k of kategorije; track k._id) {
+      <tr>
+        <td>{{k.naziv}}</td>
+        <td>{{k.potkategorije.join(', ')}}</td>
+        <td class="table-actions">
+          <button class="btn-secondary btn-sm" (click)="izmeni(k)">Izmeni</button>
+          <button class="btn-danger btn-sm" (click)="obrisi(k)">Obrisi</button>
+        </td>
+      </tr>
+    }
+    @if (kategorije.length === 0) {
+      <tr><td colspan="3">Trenutno nema kategorija.</td></tr>
+    }
+  </table>
+</div>
+
+@if (izmena) {
+  <div class="card">
+    <h3 class="section-title">Izmena kategorije</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="iz-naziv">Naziv</label>
+        <input id="iz-naziv" type="text" [(ngModel)]="izmena.naziv">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="iz-potkategorije">Potkategorije (odvojene zarezom)</label>
+        <input id="iz-potkategorije" type="text" [(ngModel)]="potkategorijeTekst">
+      </div>
+    </div>
+    <div class="actions">
+      <button (click)="sacuvajIzmenu()">Sacuvaj izmene</button>
+      <button class="btn-secondary" (click)="otkaziIzmenu()">Otkazi</button>
+    </div>
+  </div>
+}

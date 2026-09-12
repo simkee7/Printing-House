@@ -1,0 +1,27 @@
+<header class="site-header">
+  <span class="site-logo">Printing House</span>
+
+  <nav class="site-nav">
+    @if (ulogovan) {
+      <div class="menu-links">
+        @for (stavka of stavkeMenija; track stavka.ruta) {
+          <a [routerLink]="stavka.ruta" routerLinkActive="active-link">{{stavka.labela}}</a>
+        }
+      </div>
+      <div class="nav-user">
+        <span class="korisnik-info"><strong>{{ulogovan.korisnickoIme}}</strong> ({{ulogovan.tip}})</span>
+        <a routerLink="/logout" class="btn-logout">Odjava</a>
+      </div>
+    } @else {
+      <a routerLink="/register">Registracija</a>
+    }
+  </nav>
+</header>
+
+<main class="site-main">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="site-footer">
+  <p>Printing House (projekat 2026) - Elektrotehnicki fakultet, Beograd</p>
+</footer>

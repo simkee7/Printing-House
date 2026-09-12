@@ -1,0 +1,41 @@
+<h2>Izvestavanje</h2>
+
+@if (izvestaj) {
+  <div class="card">
+    <h3 class="section-title">Opsti pregled</h3>
+    <table>
+      <tr><td>Ukupan broj narudzbina</td><td>{{izvestaj.ukupanBrojNarudzbina}}</td></tr>
+      <tr><td>Narucene (ceka se placanje)</td><td>{{izvestaj.brojNarudzbinaPoStatusu.naruceno}}</td></tr>
+      <tr><td>Placene</td><td>{{izvestaj.brojNarudzbinaPoStatusu.placeno}}</td></tr>
+      <tr><td>U stampi</td><td>{{izvestaj.brojNarudzbinaPoStatusu['u stampi']}}</td></tr>
+      <tr><td>Isporucene</td><td>{{izvestaj.brojNarudzbinaPoStatusu.isporuceno}}</td></tr>
+      <tr><td>Primljene</td><td>{{izvestaj.brojNarudzbinaPoStatusu.primljeno}}</td></tr>
+      <tr><td>Ukupan prihod (od placenih narudzbina)</td><td>{{izvestaj.ukupanPrihod}} din</td></tr>
+      <tr><td>Ukupan broj proizvoda u ponudi</td><td>{{izvestaj.brojProizvoda}}</td></tr>
+      <tr><td>Proizvodi kojih vise nema na stanju</td><td>{{izvestaj.brojRasprodatihProizvoda}}</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3 class="section-title">Najtrazeniji proizvodi</h3>
+    <table>
+      <tr>
+        <th>Naziv</th>
+        <th>Ukupno prodata kolicina</th>
+        <th>Ostvareni prihod</th>
+      </tr>
+      @for (p of izvestaj.najtrazeniji; track p.naziv) {
+        <tr>
+          <td>{{p.naziv}}</td>
+          <td>{{p.kolicina}}</td>
+          <td>{{p.prihod}} din</td>
+        </tr>
+      }
+      @if (izvestaj.najtrazeniji.length === 0) {
+        <tr><td colspan="3">Jos uvek nema prodatih proizvoda.</td></tr>
+      }
+    </table>
+  </div>
+} @else {
+  <p>Ucitavanje...</p>
+}

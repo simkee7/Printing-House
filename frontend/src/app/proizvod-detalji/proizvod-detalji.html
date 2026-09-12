@@ -1,0 +1,73 @@
+@if (proizvod) {
+  <h2>{{proizvod.naziv}}</h2>
+
+  <div class="card">
+    <p>Stamparija: <strong>{{proizvod.nazivStamparije}}</strong></p>
+    <p>Adresa/grad: {{proizvod.adresaStamparije}}</p>
+    <p>Svidjanja: {{proizvod.brojSvidjanja}} | Nesvidjanja: {{proizvod.brojNesvidjanja}}</p>
+
+    <div>
+      @if (sveSlike().length > 0) {
+        <img [src]="putanjaSlike(sveSlike()[glavniIndeks])" alt="{{proizvod.naziv}}" style="max-width:250px; max-height:250px; display:block; border-radius: var(--radius-sm);">
+      } @else {
+        <p>(nema dostupne slike za ovaj proizvod)</p>
+      }
+
+      @if (sveSlike().length > 1) {
+        <div style="margin-top:8px;">
+          @for (slika of sveSlike(); track slika; let i = $index) {
+            <img [src]="putanjaSlike(slika)"
+                 (click)="izaberiSliku(i)"
+                 [style.border]="i === glavniIndeks ? '2px solid var(--color-primary)' : '1px solid var(--color-border)'"
+                 style="width:60px; height:60px; margin-right:6px; border-radius: var(--radius-sm); cursor:pointer;">
+          }
+        </div>
+      }
+    </div>
+
+    <p style="margin-top: var(--space-4);">{{proizvod.opis}}</p>
+    <p>Kategorija: {{proizvod.kategorija}} / {{proizvod.potkategorija}}</p>
+    <p>Cena po komadu: {{proizvod.jedinicnaCena}} din</p>
+    <p>Dostupne boje: {{proizvod.dostupneBoje?.join(', ')}}</p>
+
+    @if (proizvod.uslugeStampe && proizvod.uslugeStampe.length > 0) {
+      <h3 class="section-title">Vrste stampe koje se mogu izvrsiti na ovom proizvodu</h3>
+      <table>
+        <tr>
+          <th>Tip stampe</th>
+          <th>Dodatna cena po komadu</th>
+          <th>Max sirina (mm)</th>
+          <th>Max visina (mm)</th>
+        </tr>
+        @for (u of proizvod.uslugeStampe; track u.idUsluge) {
+          <tr>
+            <td>{{u.tipStampe}}</td>
+            <td>{{u.dodatnaCenaPoKomadu}} din</td>
+            <td>{{u.maxSirinaMm}}</td>
+            <td>{{u.maxVisinaMm}}</td>
+          </tr>
+        }
+      </table>
+    }
+  </div>
+
+  <div class="card">
+    <h3 class="section-title">Poslednji komentari</h3>
+    @if (proizvod.poslednjiKomentari && proizvod.poslednjiKomentari.length > 0) {
+      @for (k of proizvod.poslednjiKomentari; track $index) {
+        <div [style.border]="k.korisnickoIme === korisnickoIme ? '2px solid orange' : '1px solid var(--color-border)'" style="padding:8px; border-radius: var(--radius-sm); margin-bottom:8px;">
+          <strong>{{k.korisnickoIme}}</strong> - {{k.datum | date:'dd.MM.yyyy HH:mm'}}
+          <p style="margin:4px 0 0 0;">{{k.tekst}}</p>
+        </div>
+      }
+    } @else {
+      <p>Trenutno nema komentara za ovaj proizvod.</p>
+    }
+
+    <div class="actions">
+      <button class="btn-secondary" routerLink="/">Vrati se nazad</button>
+    </div>
+  </div>
+} @else {
+  <p>Ucitavanje...</p>
+}

@@ -1,0 +1,33 @@
+<h2>Narudzbine</h2>
+
+<div class="card">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Klijent</th>
+      <th>Proizvodi (kolicina)</th>
+      <th>Ukupan iznos</th>
+      <th>Status</th>
+      <th>Datum</th>
+      <th></th>
+    </tr>
+    @for (n of narudzbine; track n._id) {
+      <tr>
+        <td>{{n._id}}</td>
+        <td>{{n.klijentKorisnickoIme}}</td>
+        <td>{{stavkeTekst(n)}}</td>
+        <td>{{n.ukupanIznos}} din</td>
+        <td>{{n.status}}</td>
+        <td>{{n.datumNarucivanja | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td>
+          @if (n.status === 'placeno' || n.status === 'u stampi') {
+            <button class="btn-sm" (click)="sledeciKorak(n)">{{sledeciNaziv(n.status)}}</button>
+          }
+        </td>
+      </tr>
+    }
+    @if (narudzbine.length === 0) {
+      <tr><td colspan="7">Trenutno nemate nijednu narudzbinu.</td></tr>
+    }
+  </table>
+</div>

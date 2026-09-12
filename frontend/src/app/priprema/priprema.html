@@ -1,0 +1,47 @@
+@if (izbor) {
+  <h2>Priprema proizvoda - {{izbor.naziv}}</h2>
+
+  <div class="card">
+    <p>Boja: {{izbor.boja}} | Nacin stampe: {{izbor.tipStampe || '(bez dodatne stampe)'}} | Cena po komadu: {{izbor.cenaPoKomadu}} din</p>
+
+    <p class="hint">
+      Ovde mozete uneti tekst i/ili sliku koji ce (samo vizuelno, radi pregleda) biti postavljeni preko proizvoda.
+      Ova personalizacija se ne cuva na serveru, sluzi samo kao pregled pre narucivanja.
+    </p>
+
+    <div style="position:relative; width:250px; height:250px; border:1px solid var(--color-border); border-radius: var(--radius-sm); overflow:hidden;">
+      @if (izbor.slikaUrl) {
+        <img [src]="putanjaSlike(izbor.slikaUrl)" style="width:250px; height:250px; object-fit:cover;">
+      }
+      @if (personalizacijaSlika) {
+        <img [src]="personalizacijaSlika" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); max-width:100px; max-height:100px;">
+      }
+      @if (personalizacijaTekst) {
+        <div style="position:absolute; bottom:10px; left:0; right:0; text-align:center; color:red; font-weight:bold; text-shadow:1px 1px 2px white;">
+          {{personalizacijaTekst}}
+        </div>
+      }
+    </div>
+
+    <div class="form-row" style="margin-top: var(--space-4);">
+      <div class="form-group">
+        <label class="form-label" for="pr-tekst">Tekst za stampu</label>
+        <input id="pr-tekst" type="text" [(ngModel)]="personalizacijaTekst" placeholder="npr. Vas natpis...">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="pr-slika">Slika za stampu</label>
+        <input id="pr-slika" type="file" (change)="onSlikaSelected($event)" accept="image/png,image/jpeg,image/gif">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="pr-kolicina">Kolicina (na stanju: {{izbor.kolicinaNaLageru}})</label>
+        <input id="pr-kolicina" type="number" [(ngModel)]="kolicina" min="1">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button (click)="dodajUKorpu()">DODAJ U KORPU</button>
+      <button class="btn-secondary" (click)="ponisti()">PONISTI</button>
+      <button class="btn-secondary" (click)="nazad()">NAZAD</button>
+    </div>
+  </div>
+}

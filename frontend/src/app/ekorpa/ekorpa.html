@@ -1,0 +1,73 @@
+@if (nabavkaKreirana) {
+  <div class="card">
+    <h2>Zahtev za javnu nabavku je poslat</h2>
+    <p>Stamparijama je poslato obavestenje o novoj javnoj nabavci. Licitacija traje 10 minuta - pobednik
+      se automatski bira i faktura se formira prilikom Vase sledece prijave na sistem, nakon isteka roka.
+      Status mozete pratiti na stranici "Javne nabavke".</p>
+  </div>
+} @else if (!narudzbinaZavrsena) {
+  <h2>E-korpa</h2>
+
+  @if (grupePoStamparijama.length === 0) {
+    <div class="card">
+      <p>Vasa korpa je trenutno prazna.</p>
+    </div>
+  }
+
+  @for (grupa of grupePoStamparijama; track grupa.nazivStamparije) {
+    <div class="card">
+      <h3 class="section-title">Stamparija: {{grupa.nazivStamparije}}</h3>
+      <table>
+        <tr>
+          <th>Proizvod</th>
+          <th>Boja</th>
+          <th>Nacin stampe</th>
+          <th>Kolicina</th>
+          <th>Cena po komadu</th>
+          <th>Ukupno</th>
+          <th></th>
+        </tr>
+        @for (s of grupa.stavke; track $index) {
+          <tr>
+            <td>{{s.naziv}}</td>
+            <td>{{s.boja}}</td>
+            <td>{{s.tipStampe || '-'}}</td>
+            <td>{{s.kolicina}}</td>
+            <td>{{s.cenaPoKomadu}} din</td>
+            <td>{{s.kolicina * s.cenaPoKomadu}} din</td>
+            <td><button class="btn-danger btn-sm" (click)="ukloni(stavke.indexOf(s))">Ukloni</button></td>
+          </tr>
+        }
+      </table>
+      <p>Ukupno za ovu stamparija: <strong>{{grupa.ukupno}} din</strong></p>
+    </div>
+  }
+
+  @if (stavke.length > 0) {
+    <div class="card">
+      <h3 class="section-title">Ukupan iznos korpe: {{ukupanIznosKorpe()}} din</h3>
+      @if (jePravnoLice) {
+        <p class="hint">Vas nalog je tipa pravno lice - potvrdom se ne kreira faktura, vec zahtev za javnu nabavku
+          (licitacija medju stamparijama u trajanju od 10 minuta).</p>
+        <button (click)="potvrdi()">POSALJI ZAHTEV ZA JAVNU NABAVKU</button>
+      } @else {
+        <button (click)="potvrdi()">POTVRDI</button>
+      }
+    </div>
+  }
+
+  <p><a routerLink="/klijent/pretraga">Nastavi kupovinu</a></p>
+} @else {
+  <div class="card">
+    <h2>Narudzbina je uspesno kreirana</h2>
+    <p>Faktura je poslata i na Vasu e-mejl adresu. Fakture mozete preuzeti i ovde:</p>
+    <ul>
+      @for (n of kreiraneNarudzbine; track n._id) {
+        <li>
+          {{n.stamparijaKorisnickoIme}} ({{n.ukupanIznos}} din):
+          <a [href]="fakturaUrl(n._id)" target="_blank">Preuzmi fakturu (PDF)</a>
+        </li>
+      }
+    </ul>
+  </div>
+}

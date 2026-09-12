@@ -1,0 +1,46 @@
+<h2>Dodavanje proizvoda iz fajla</h2>
+
+<div class="card">
+  @if (!korakSlike) {
+    <p>
+      Izaberite JSON fajl u formatu iz Priloga 1
+    </p>
+
+    <input type="file" accept="application/json,.json" (change)="onFileSelected($event)">
+
+    @if (sadrzajFajla) {
+      <p>Fajl sadrzi <strong>{{brojZaPregled}}</strong> proizvoda.</p>
+      <div class="actions">
+        <button (click)="potvrdiUcitavanje()">Ucitaj proizvode</button>
+      </div>
+    }
+  } @else {
+    <p class="hint">
+      Po zelji, za svaki uneti proizvod mozete odmah otpremiti glavnu sliku i do 3 dodatne slike
+      (moze se preskociti i uraditi kasnije, kroz azuriranje proizvoda).
+    </p>
+
+    <table>
+      <tr>
+        <th>Sifra</th>
+        <th>Naziv</th>
+        <th>Glavna slika</th>
+        <th>Dodatne slike (najvise 3)</th>
+        <th></th>
+      </tr>
+      @for (p of proizvodiZaSlike; track p.sifra) {
+        <tr>
+          <td>{{p.sifra}}</td>
+          <td>{{p.naziv}}</td>
+          <td><input type="file" accept="image/*" (change)="glavnaSlikaOdabrana($event, p)"></td>
+          <td><input type="file" accept="image/*" multiple (change)="dodatneSlikeOdabrane($event, p)"></td>
+          <td><button class="btn-secondary btn-sm" (click)="sacuvajSlike(p)">Sacuvaj slike</button></td>
+        </tr>
+      }
+    </table>
+
+    <div class="actions">
+      <button (click)="zavrsi()">Zavrsi</button>
+    </div>
+  }
+</div>

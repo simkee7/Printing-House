@@ -1,0 +1,48 @@
+<h2>Arhiva proizvoda</h2>
+
+<div class="card">
+  @if (stavke.length === 0) {
+    <p>Trenutno nemate nijednu isporucenu ili primljenu narudzbinu.</p>
+  }
+
+  <table>
+    <tr>
+      <th class="sortable" (click)="sortiraj('datumNarucivanja')">Datum narucivanja</th>
+      <th class="sortable" (click)="sortiraj('nazivStamparije')">Stamparija</th>
+      <th class="sortable" (click)="sortiraj('naziv')">Proizvod</th>
+      <th class="sortable" (click)="sortiraj('kolicina')">Kolicina</th>
+      <th>Nacin stampe</th>
+      <th>Status</th>
+      <th>Svidjanje/Komentar</th>
+    </tr>
+    @for (s of stavke; track $index) {
+      <tr>
+        <td>{{s.datumNarucivanja | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td>{{s.nazivStamparije}}</td>
+        <td>{{s.naziv}}</td>
+        <td>{{s.kolicina}}</td>
+        <td>{{s.tipStampe || '-'}}</td>
+        <td>{{s.status}}</td>
+        <td class="table-actions">
+          @if (s.status === 'primljeno' && s.sifra) {
+            <button class="btn-like" [class.active]="s.daLiSamSvideo" (click)="svidi(s)">Like ({{s.brojSvidjanja}})</button>
+            <button class="btn-dislike" [class.active]="s.daLiSamNesvideo" (click)="nesvidi(s)">Dislike ({{s.brojNesvidjanja}})</button>
+          } @else if (s.status === 'primljeno') {
+            <span class="hint">(ocenjivanje nije dostupno za ovaj proizvod)</span>
+          }
+        </td>
+        <td class="table-actions">
+          @if (s.status === 'primljeno' && s.sifra) {
+            <input type="text" [(ngModel)]="s.mojKomentar" placeholder="Vas komentar..." style="width:160px;">
+            <button class="btn-secondary btn-sm" (click)="komentarisi(s)">Sacuvaj komentar</button>
+          }
+        </td>
+        @if (s.status === 'isporuceno') {
+          <td>
+            <button class="btn-sm" (click)="potvrdiPrijem(s)">Potvrdi prijem</button>
+          </td>
+        }
+      </tr>
+    }
+  </table>
+</div>

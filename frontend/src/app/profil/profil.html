@@ -1,0 +1,100 @@
+<h2>Profil</h2>
+
+<div class="card">
+  <h3 class="section-title">Podaci o profilu</h3>
+
+  <div class="form-group">
+    <label class="form-label">Profilna slika</label>
+    <img [src]="slikaPrikaz()" alt="profilna slika" style="width:100px; height:100px; border-radius: var(--radius-sm); object-fit:cover; display:block; margin-bottom:6px;">
+    <input type="file" (change)="onFileSelected($event)" accept="image/png,image/jpeg,image/gif">
+    <span class="hint">Min. 100x100, maks. 250x250 px, JPG/PNG/GIF.</span>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="p-korisnickoime">Korisnicko ime</label>
+      <input id="p-korisnickoime" type="text" [value]="user.korisnickoIme" disabled>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="p-ime">Ime</label>
+      <input id="p-ime" type="text" [(ngModel)]="user.ime">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="p-prezime">Prezime</label>
+      <input id="p-prezime" type="text" [(ngModel)]="user.prezime">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="p-telefon">Kontakt telefon</label>
+      <input id="p-telefon" type="text" [(ngModel)]="user.telefon">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="p-email">E-mail adresa</label>
+      <input id="p-email" type="text" [(ngModel)]="user.email">
+    </div>
+  </div>
+
+  @if (user.tip === 'pravno lice' || user.tip === 'stamparija') {
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="p-naziv">Naziv institucije</label>
+        <input id="p-naziv" type="text" [(ngModel)]="user.nazivInstitucije">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="p-adresa">Adresa sedista</label>
+        <input id="p-adresa" type="text" [(ngModel)]="user.adresaSedista">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="p-mb">MB</label>
+        <input id="p-mb" type="text" [(ngModel)]="user.MB">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="p-pib">PIB</label>
+        <input id="p-pib" type="text" [(ngModel)]="user.PIB">
+      </div>
+    </div>
+  }
+
+  <div class="actions">
+    <button (click)="azuriraj()">Azuriraj podatke</button>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Narudzbine (fakture)</h3>
+  <table>
+    <tr>
+      <th class="sortable" (click)="sortiraj('_id')">ID fakture</th>
+      <th class="sortable" (click)="sortiraj('nazivStamparije')">Stamparija</th>
+      <th>Grad</th>
+      <th>Proizvodi (kolicina)</th>
+      <th class="sortable" (click)="sortiraj('ukupanIznos')">Ukupan iznos</th>
+      <th class="sortable" (click)="sortiraj('status')">Status</th>
+      <th class="sortable" (click)="sortiraj('datumNarucivanja')">Datum</th>
+    </tr>
+    @for (n of narudzbine; track n._id) {
+      <tr>
+        <td>{{n._id}}</td>
+        <td>{{n.nazivStamparije}}</td>
+        <td>{{grad(n.nazivStamparije)}}</td>
+        <td>{{stavkeTekst(n)}}</td>
+        <td>{{n.ukupanIznos}} din</td>
+        <td>{{n.status}}</td>
+        <td>{{n.datumNarucivanja | date:'dd.MM.yyyy HH:mm'}}</td>
+        @if (n.status === 'placeno') {
+          <td>
+            <button class="btn-danger btn-sm" (click)="otkazi(n)">Otkazi</button>
+          </td> 
+        }
+      </tr>
+    }
+    
+    @if (narudzbine.length === 0) {
+      <tr><td colspan="8">Trenutno nemate nijednu narudzbinu.</td></tr>
+    }
+  </table>
+</div>

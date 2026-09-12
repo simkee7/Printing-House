@@ -1,0 +1,7 @@
+.grafikon-kontejner {
+  position: relative;
+  height: 320px;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 24px;
+}

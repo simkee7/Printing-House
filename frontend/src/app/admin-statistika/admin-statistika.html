@@ -1,0 +1,58 @@
+<h2>Statistika</h2>
+
+<div class="card">
+  @if (statistika) {
+    <table>
+      <tr><td>Broj fizickih lica</td><td>{{statistika.brojFizickihLica}}</td></tr>
+      <tr><td>Broj pravnih lica</td><td>{{statistika.brojPravnihLica}}</td></tr>
+      <tr><td>Broj stamparija</td><td>{{statistika.brojStamparija}}</td></tr>
+      <tr><td>Nalozi koji cekaju odobrenje</td><td>{{statistika.brojNaloganaCekanju}}</td></tr>
+      <tr><td>Ukupan broj proizvoda u sistemu</td><td>{{statistika.brojProizvoda}}</td></tr>
+      <tr><td>Ukupan broj kategorija</td><td>{{statistika.brojKategorija}}</td></tr>
+      <tr><td>Ukupan broj narudzbina</td><td>{{statistika.ukupanBrojNarudzbina}}</td></tr>
+      <tr><td>&nbsp;&nbsp;- narucene (ceka se placanje)</td><td>{{statistika.brojNarudzbinaPoStatusu.naruceno}}</td></tr>
+      <tr><td>&nbsp;&nbsp;- placene</td><td>{{statistika.brojNarudzbinaPoStatusu.placeno}}</td></tr>
+      <tr><td>&nbsp;&nbsp;- u stampi</td><td>{{statistika.brojNarudzbinaPoStatusu['u stampi']}}</td></tr>
+      <tr><td>&nbsp;&nbsp;- isporucene</td><td>{{statistika.brojNarudzbinaPoStatusu.isporuceno}}</td></tr>
+      <tr><td>&nbsp;&nbsp;- primljene</td><td>{{statistika.brojNarudzbinaPoStatusu.primljeno}}</td></tr>
+      <tr><td>Ukupan promet (sve placene narudzbine)</td><td>{{statistika.ukupanPromet}} din</td></tr>
+      <tr><td>Ukupan broj javnih nabavki</td><td>{{statistika.ukupanBrojNabavki}}</td></tr>
+      <tr><td>&nbsp;&nbsp;- otvorene</td><td>{{statistika.brojNabavkiPoStatusu.otvorena}}</td></tr>
+      <tr><td>&nbsp;&nbsp;- zatvorene (ceka se izbor)</td><td>{{statistika.brojNabavkiPoStatusu.zatvorena}}</td></tr>
+      <tr><td>&nbsp;&nbsp;- zavrsene</td><td>{{statistika.brojNabavkiPoStatusu.zavrsena}}</td></tr>
+    </table>
+  } @else {
+    <p>Ucitavanje...</p>
+  }
+</div>
+
+<div class="card">
+  <h3 class="section-title">Promet stamparija ka klijentima (poslednja 3 meseca)</h3>
+  @if (prometPrazanNiz) {
+    <p>Nema podataka za prikaz.</p>
+  }
+  <div class="grafikon-kontejner">
+    <canvas #grafikonPrometa></canvas>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Najtrazeniji proizvodi (poslednjih mesec dana)</h3>
+  @if (najtrazeniPrazanNiz) {
+    <p>Nema podataka za prikaz.</p>
+  }
+  <div class="grafikon-kontejner">
+    <canvas #grafikonNajtrazenijih></canvas>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Kretanje ocene proizvoda kroz vreme</h3>
+  <p class="hint">Klikom na naziv proizvoda u legendi ispod grafikona, taj proizvod se moze privremeno iskljuciti iz prikaza.</p>
+  @if (ocenaPrazanNiz) {
+    <p>Nema podataka za prikaz.</p>
+  }
+  <div class="grafikon-kontejner">
+    <canvas #grafikonOcena></canvas>
+  </div>
+</div>

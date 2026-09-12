@@ -1,0 +1,105 @@
+<h2>Upravljanje korisnicima</h2>
+
+<div class="card">
+  <h3 class="section-title">Zahtevi za registraciju</h3>
+  <table>
+    <tr>
+      <th>Korisnicko ime</th>
+      <th>Ime i prezime / naziv institucije</th>
+      <th>Tip</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+    @for (k of naCekanju(); track k.korisnickoIme) {
+      <tr>
+        <td>{{k.korisnickoIme}}</td>
+        <td>{{k.nazivInstitucije || (k.ime + ' ' + k.prezime)}}</td>
+        <td>{{k.tip}}</td>
+        <td>{{k.email}}</td>
+        <td class="table-actions">
+          <button class="btn-sm" (click)="odobri(k)">Odobri</button>
+          <button class="btn-danger btn-sm" (click)="odbij(k)">Odbij</button>
+        </td>
+      </tr>
+    }
+    @if (naCekanju().length === 0) {
+      <tr><td colspan="5">Trenutno nema zahteva na cekanju.</td></tr>
+    }
+  </table>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Aktivni nalozi</h3>
+  <table>
+    <tr>
+      <th>Korisnicko ime</th>
+      <th>Ime i prezime / naziv institucije</th>
+      <th>Tip</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+    @for (k of aktivni(); track k.korisnickoIme) {
+      <tr>
+        @if (korisnickoImeUIzmeni === k.korisnickoIme) {
+          <td>{{k.korisnickoIme}}</td>
+          <td>
+            <div class="form-group">
+              <label class="form-label">Ime</label>
+              <input type="text" [(ngModel)]="izmena.ime">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Prezime</label>
+              <input type="text" [(ngModel)]="izmena.prezime">
+            </div>
+            @if (k.tip === 'pravno lice' || k.tip === 'stamparija') {
+              <div class="form-group">
+                <label class="form-label">Naziv institucije</label>
+                <input type="text" [(ngModel)]="izmena.nazivInstitucije">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Adresa sedista</label>
+                <input type="text" [(ngModel)]="izmena.adresaSedista">
+              </div>
+              <div class="form-group">
+                <label class="form-label">MB</label>
+                <input type="text" [(ngModel)]="izmena.MB">
+              </div>
+              <div class="form-group">
+                <label class="form-label">PIB</label>
+                <input type="text" [(ngModel)]="izmena.PIB">
+              </div>
+            }
+          </td>
+          <td>{{k.tip}}</td>
+          <td>
+            <div class="form-group">
+              <label class="form-label">Telefon</label>
+              <input type="text" [(ngModel)]="izmena.telefon">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="text" [(ngModel)]="izmena.email">
+            </div>
+          </td>
+          <td class="table-actions">
+            <button class="btn-sm" (click)="sacuvajIzmenu()">Sacuvaj</button>
+            <button class="btn-secondary btn-sm" (click)="otkaziIzmenu()">Otkazi</button>
+          </td>
+        } @else {
+          <td>{{k.korisnickoIme}}</td>
+          <td>{{k.nazivInstitucije || (k.ime + ' ' + k.prezime)}}</td>
+          <td>{{k.tip}}</td>
+          <td>{{k.email}}</td>
+          <td class="table-actions">
+            <button class="btn-secondary btn-sm" (click)="zapocniIzmenu(k)">Izmeni</button>
+            <button class="btn-secondary btn-sm" (click)="deaktiviraj(k)">Deaktiviraj</button>
+            <button class="btn-danger btn-sm" (click)="obrisi(k)">Obrisi</button>
+          </td>
+        }
+      </tr>
+    }
+    @if (aktivni().length === 0) {
+      <tr><td colspan="5">Trenutno nema aktivnih naloga.</td></tr>
+    }
+  </table>
+</div>

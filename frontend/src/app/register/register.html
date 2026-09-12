@@ -1,0 +1,82 @@
+<div class="card">
+  <h3 class="section-title">Registracija</h3>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="reg-ime">Ime</label>
+      <input id="reg-ime" type="text" [(ngModel)]="user.ime">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="reg-prezime">Prezime</label>
+      <input id="reg-prezime" type="text" [(ngModel)]="user.prezime">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="reg-korisnicko">Korisnicko ime</label>
+    <input id="reg-korisnicko" type="text" [(ngModel)]="user.korisnickoIme">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="reg-lozinka">Lozinka</label>
+    <input id="reg-lozinka" type="password" [(ngModel)]="user.lozinka" (input)="onPasswordInput()">
+    @if (user.lozinka && !pwValid) {
+      <span class="hint field-error">
+        Lozinka mora imati 8-12 karaktera, poceti slovom, imati bar 1 veliko slovo, 1 broj i 1 specijalan znak.
+      </span>
+    }
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="reg-telefon">Kontakt telefon</label>
+      <input id="reg-telefon" type="text" [(ngModel)]="user.telefon">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="reg-email">E-mail adresa</label>
+      <input id="reg-email" type="email" [(ngModel)]="user.email">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Tip korisnika</label>
+    <div class="radio-group">
+      <label><input type="radio" name="kor" [(ngModel)]="user.tip" value="fizicko lice"> Fizicko lice</label>
+      <label><input type="radio" name="kor" [(ngModel)]="user.tip" value="pravno lice"> Pravno lice</label>
+      <label><input type="radio" name="kor" [(ngModel)]="user.tip" value="stamparija"> Stamparija</label>
+    </div>
+  </div>
+
+  @if (user.tip === 'pravno lice' || user.tip === 'stamparija') {
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="reg-naziv-inst">Naziv institucije</label>
+        <input id="reg-naziv-inst" type="text" [(ngModel)]="user.nazivInstitucije">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="reg-adresa">Adresa sedista</label>
+        <input id="reg-adresa" type="text" [(ngModel)]="user.adresaSedista">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="reg-mb">MB</label>
+        <input id="reg-mb" type="text" [(ngModel)]="user.MB">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="reg-pib">PIB</label>
+        <input id="reg-pib" type="text" [(ngModel)]="user.PIB">
+      </div>
+    </div>
+  }
+
+  <div class="form-group">
+    <label class="form-label" for="reg-slika">Profilna slika</label>
+    <input id="reg-slika" type="file" (change)="onFileSelected($event)" accept="image/png,image/jpeg,image/gif">
+  </div>
+
+  <div class="actions">
+    <button (click)="register()">Registruj se</button>
+    <button class="btn-secondary" routerLink="">Vrati se nazad</button>
+  </div>
+</div>

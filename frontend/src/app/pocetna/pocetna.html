@@ -1,0 +1,76 @@
+<app-login></app-login>
+<br>
+<div class="card">
+  <h3 class="section-title">Opste informacije</h3>
+  <p>Ukupan broj registrovanih stamparija: <strong>{{brojStamparija}}</strong></p>
+
+  <h4>TOP 5 najbolje ocenjenih proizvoda (po broju svidjanja)</h4>
+  <table>
+    <tr>
+      <th>Naziv proizvoda</th>
+      <th>Stamparija</th>
+      <th>Broj svidjanja</th>
+      <th></th>
+    </tr>
+    @for (p of top5; track p._id) {
+      <tr>
+        <td>{{p.naziv}}</td>
+        <td>{{p.nazivStamparije}}</td>
+        <td>{{p.brojSvidjanja}}</td>
+        <td><a [routerLink]="['/proizvod', p._id]">DETALJI</a></td>
+      </tr>
+    }
+    @if (top5.length === 0) {
+      <tr><td colspan="4">Trenutno nema proizvoda na stanju.</td></tr>
+    }
+  </table>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Pretrazivanje proizvoda</h3>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="pretraga-naziv">Naziv proizvoda</label>
+      <input id="pretraga-naziv" type="text" [(ngModel)]="nazivPretraga" placeholder="npr. majica, solja...">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="pretraga-kategorija">Kategorija</label>
+      <select id="pretraga-kategorija" [(ngModel)]="kategorijaPretraga">
+        <option value="Sve kategorije">Sve kategorije</option>
+        @for (k of kategorije; track k) {
+          <option [value]="k">{{k}}</option>
+        }
+      </select>
+    </div>
+    <button (click)="pretrazi()">Pretrazi</button>
+  </div>
+
+  @if (pretragaIzvrsena) {
+    <table>
+      <tr>
+        <th class="sortable" (click)="sortirajPoNazivu()">
+          Naziv proizvoda {{sortSmer === 'asc' ? '(A-Z)' : '(Z-A)'}}
+        </th>
+        <th>Kategorija</th>
+        <th>Stamparija</th>
+        <th>Grad</th>
+        <th>Cena po komadu</th>
+        <th></th>
+      </tr>
+      @for (p of rezultati; track p._id) {
+        <tr>
+          <td>{{p.naziv}}</td>
+          <td>{{p.kategorija}} / {{p.potkategorija}}</td>
+          <td>{{p.nazivStamparije}}</td>
+          <td>{{p.grad}}</td>
+          <td>{{p.jedinicnaCena}} din</td>
+          <td><a [routerLink]="['/proizvod', p._id]">DETALJI</a></td>
+        </tr>
+      }
+      @if (rezultati.length === 0) {
+        <tr><td colspan="6">Nema rezultata za zadatu pretragu.</td></tr>
+      }
+    </table>
+  }
+</div>

@@ -1,0 +1,197 @@
+<h2>Proizvodi i usluge</h2>
+
+<p>
+  Nove proizvode mozete dodati pojedinacno ovde ispod, ili kroz
+  <a routerLink="/stamparija/dodavanjeIzFajla">Dodavanje iz fajla</a>.
+</p>
+
+<div class="card">
+  <h3 class="section-title">Dodaj novi proizvod</h3>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="np-naziv">Naziv</label>
+      <input id="np-naziv" type="text" [(ngModel)]="noviNaziv">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="np-opis">Opis</label>
+      <input id="np-opis" type="text" [(ngModel)]="noviOpis">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="np-kategorija">Kategorija</label>
+      <select id="np-kategorija" [(ngModel)]="novaKategorija" (change)="onKategorijaPromenjena()">
+        <option value="">(izaberite kategoriju)</option>
+        @for (k of kategorije; track k._id) {
+          <option [value]="k.naziv">{{k.naziv}}</option>
+        }
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="np-potkategorija">Potkategorija</label>
+      <select id="np-potkategorija" [(ngModel)]="novaPotkategorija" [disabled]="!novaKategorija">
+        <option value="">(izaberite potkategoriju)</option>
+        @for (p of potkategorijeZaNovu(); track p) {
+          <option [value]="p">{{p}}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="np-cena">Cena po komadu u din</label>
+      <input id="np-cena" type="number" [(ngModel)]="novaCena">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="np-kolicina">Kolicina na stanju</label>
+      <input id="np-kolicina" type="number" [(ngModel)]="novaKolicina" min="0">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="np-boje">Dostupne boje (odvojene zarezom)</label>
+      <input id="np-boje" type="text" [(ngModel)]="novaBojeTekst" placeholder="Bela, Crna, Siva">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="np-glavna-slika">Glavna slika</label>
+      <input id="np-glavna-slika" type="file" accept="image/jpeg,image/png,image/gif" (change)="onGlavnaSlikaOdabrana($event)">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="np-dodatne-slike">Dodatne slike (najvise 3)</label>
+      <input id="np-dodatne-slike" type="file" accept="image/jpeg,image/png,image/gif" multiple (change)="onDodatneSlikeOdabrane($event)">
+    </div>
+  </div>
+
+  <h4>Usluge stampe (opciono)</h4>
+  <p class="hint">Usluga je specijalizovan tip stampe ili preslikaca koji povecava cenu po komadu.</p>
+  <table>
+    <tr>
+      <th>Tip stampe/usluge</th>
+      <th>Dodatna cena po komadu</th>
+      <th>Max sirina (mm)</th>
+      <th>Max visina (mm)</th>
+      <th></th>
+    </tr>
+    @for (u of noveUsluge; track $index) {
+      <tr>
+        <td><input type="text" [(ngModel)]="u.tipStampe" placeholder="npr. Sito stampa"></td>
+        <td><input type="number" [(ngModel)]="u.dodatnaCenaPoKomadu" style="width:100px;"></td>
+        <td><input type="number" [(ngModel)]="u.maxSirinaMm" style="width:80px;"></td>
+        <td><input type="number" [(ngModel)]="u.maxVisinaMm" style="width:80px;"></td>
+        <td><button class="btn-secondary btn-sm" (click)="ukloniUslugu($index)">Ukloni</button></td>
+      </tr>
+    }
+    @if (noveUsluge.length === 0) {
+      <tr><td colspan="5">Ovaj proizvod jos uvek nema dodatu nijednu uslugu.</td></tr>
+    }
+  </table>
+  <div class="actions">
+    <button class="btn-secondary btn-sm" (click)="dodajUslugu()">Dodaj uslugu</button>
+  </div>
+
+  <div class="actions">
+    <button (click)="dodajProizvod()">Sacuvaj novi proizvod</button>
+  </div>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Moji proizvodi</h3>
+  <table>
+    <tr>
+      <th>Sifra</th>
+      <th>Naziv</th>
+      <th>Kategorija</th>
+      <th>Cena</th>
+      <th>Na stanju</th>
+      <th></th>
+    </tr>
+    @for (p of proizvodi; track p._id) {
+      <tr>
+        <td>{{p.sifra}}</td>
+        <td>{{p.naziv}}</td>
+        <td>{{p.kategorija}} / {{p.potkategorija}}</td>
+        <td>{{p.jedinicnaCena}} din</td>
+        <td>{{p.kolicinaNaLageru}}</td>
+        <td class="table-actions">
+          <button class="btn-secondary btn-sm" (click)="izmeni(p)">Izmeni</button>
+          <button class="btn-danger btn-sm" (click)="obrisi(p)">Obrisi</button>
+        </td>
+      </tr>
+    }
+    @if (proizvodi.length === 0) {
+      <tr><td colspan="6">Trenutno nemate nijedan proizvod.</td></tr>
+    }
+  </table>
+</div>
+
+@if (izmena) {
+  <div class="card">
+    <h3 class="section-title">Izmena proizvoda</h3>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="iz-naziv">Naziv</label>
+        <input id="iz-naziv" type="text" [(ngModel)]="izmena.naziv">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="iz-opis">Opis</label>
+        <input id="iz-opis" type="text" [(ngModel)]="izmena.opis">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="iz-kategorija">Kategorija</label>
+        <input id="iz-kategorija" type="text" [(ngModel)]="izmena.kategorija">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="iz-potkategorija">Potkategorija</label>
+        <input id="iz-potkategorija" type="text" [(ngModel)]="izmena.potkategorija">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="iz-cena">Cena po komadu</label>
+        <input id="iz-cena" type="number" [(ngModel)]="izmena.jedinicnaCena">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="iz-kolicina">Kolicina na stanju</label>
+        <input id="iz-kolicina" type="number" [(ngModel)]="izmena.kolicinaNaLageru">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="iz-boje">Dostupne boje (odvojene zarezom)</label>
+        <input id="iz-boje" type="text" [(ngModel)]="bojeTekst">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="iz-glavna-slika">Glavna slika</label>
+      @if (izmena.slikaUrl) {
+        <img class="slika-pregled" [src]="slikaZaPrikaz(izmena.slikaUrl)">
+      }
+      <input id="iz-glavna-slika" type="file" accept="image/jpeg,image/png,image/gif" (change)="onIzmenaGlavnaSlikaOdabrana($event)">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="iz-dodatne-slike">Dodatne slike (najvise 3 - izborom novih se zamenjuju postojece)</label>
+      @if (izmena.dodatneSlike && izmena.dodatneSlike.length > 0) {
+        <div class="slike-pregled-red">
+          @for (s of izmena.dodatneSlike; track $index) {
+            <img class="slika-pregled-mala" [src]="slikaZaPrikaz(s)">
+          }
+        </div>
+      }
+      <input id="iz-dodatne-slike" type="file" accept="image/jpeg,image/png,image/gif" multiple (change)="onIzmenaDodatneSlikeOdabrane($event)">
+    </div>
+
+    <div class="actions">
+      <button (click)="sacuvaj()">Sacuvaj izmene</button>
+      <button class="btn-secondary" (click)="otkaziIzmenu()">Otkazi</button>
+    </div>
+  </div>
+}

@@ -1,0 +1,66 @@
+<h2>Javne nabavke - otvorene za prijavu</h2>
+
+<div class="card">
+  <table>
+    <tr>
+      <th>Trazeni proizvodi</th>
+      <th>Rok za ponude</th>
+      <th>Vasa ukupna cena</th>
+      <th>Vas rok isporuke (dana)</th>
+      <th></th>
+    </tr>
+    @for (n of otvorene; track n._id) {
+      <tr>
+        <td>
+          @for (s of n.stavke; track $index) {
+            {{s.naziv}}{{s.kategorija ? ' (' + s.kategorija + ')' : ''}} x {{s.kolicina}}@if (!$last) {, }
+          }
+        </td>
+        <td>{{n.rokZaPonude | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td><input type="number" [(ngModel)]="cenaUkupno[n._id]" style="width:100px;"></td>
+        <td><input type="number" [(ngModel)]="rokIsporuke[n._id]" style="width:60px;"></td>
+        <td><button class="btn-sm" (click)="posaljiPonudu(n)">Posalji ponudu</button></td>
+      </tr>
+    }
+    @if (otvorene.length === 0) {
+      <tr><td colspan="5">Trenutno nema otvorenih nabavki.</td></tr>
+    }
+  </table>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Moje ponude</h3>
+  <table>
+    <tr>
+      <th>Trazeni proizvodi</th>
+      <th>Rok za ponude</th>
+      <th>Vasa ukupna cena</th>
+      <th>Vas rok isporuke</th>
+      <th>Status nabavke</th>
+      <th>Rezultat</th>
+    </tr>
+    @for (n of mojePonude; track n._id) {
+      <tr>
+        <td>
+          @for (s of n.stavke; track $index) {
+            {{s.naziv}} x {{s.kolicina}}@if (!$last) {, }
+          }
+        </td>
+        <td>{{n.rokZaPonude | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td>{{n.mojaCenaUkupno}} din</td>
+        <td>{{n.mojRokIsporuke}}</td>
+        <td>{{n.status}}</td>
+        <td>
+          @if (n.status === 'zavrsena') {
+            {{n.daLiSamPobednik ? 'Izabrani ste kao izvodjac!' : 'Niste izabrani.'}}
+          } @else {
+            Ceka se rok / obrada rezultata
+          }
+        </td>
+      </tr>
+    }
+    @if (mojePonude.length === 0) {
+      <tr><td colspan="6">Jos uvek niste poslali nijednu ponudu.</td></tr>
+    }
+  </table>
+</div>

@@ -1,0 +1,75 @@
+<h2>Javne nabavke</h2>
+
+<div class="card">
+  <p>Nabavke se automatski formiraju kada potvrdite e-korpu. Za svaku
+    nabavku se svim stamparijama salje obavestenje i licitacija traje 10 minuta. Pobednik (najniza
+    ukupna cena, uz dovoljnu kolicinu svakog trazenog proizvoda na stanju) bira se automatski
+    prilikom Vase sledece prijave na sistem, nakon isteka roka.</p>
+</div>
+
+<div class="card">
+  <h3 class="section-title">Moje nabavke</h3>
+  <table>
+    <tr>
+      <th>Trazeni proizvodi</th>
+      <th>Rok za ponude</th>
+      <th>Status</th>
+      <th>Broj ponuda</th>
+      <th></th>
+    </tr>
+    @for (n of nabavke; track n._id) {
+      <tr>
+        <td>
+          @for (s of n.stavke; track $index) {
+            {{s.naziv}} x {{s.kolicina}}@if (!$last) {, }
+          }
+        </td>
+        <td>{{n.rokZaPonude | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td>{{n.status}}</td>
+        <td>{{n.brojPonuda}}</td>
+        <td class="table-actions">
+          @if (n.status !== 'otvorena') {
+            <button class="btn-secondary btn-sm" (click)="prikaziDetalje(n)">{{otvorenaDetaljiId === n._id ? 'Sakrij ponude' : 'Prikazi ponude'}}</button>
+            <a [href]="izvestajUrl(n._id)" target="_blank">Preuzmi izvestaj (PDF)</a>
+          } @else {
+            <span class="hint">(ponude su slepe do isteka roka)</span>
+          }
+        </td>
+      </tr>
+      @if (otvorenaDetaljiId === n._id && detaljiNabavke) {
+        <tr>
+          <td colspan="5">
+            @if (detaljiNabavke.pobednikKorisnickoIme) {
+              <p>Izabrani izvodjac: <strong>{{detaljiNabavke.pobednikKorisnickoIme}}</strong></p>
+            } @else if (n.status === 'zavrsena') {
+              <p>Nabavka je zavrsena, ali nijedna stamparija nije mogla da ispuni ceo zahtev (dovoljna
+                kolicina svakog trazenog proizvoda na stanju).</p>
+            } @else if (n.status === 'zatvorena') {
+              <p>Rok je istekao. Rezultat ce biti poznat nakon Vase sledece prijave na sistem.</p>
+            }
+            <table>
+              <tr>
+                <th>Stamparija</th>
+                <th>Ukupna cena</th>
+                <th>Rok isporuke (dana)</th>
+              </tr>
+              @for (p of detaljiNabavke.ponude; track p.stamparijaKorisnickoIme) {
+                <tr>
+                  <td>{{p.nazivStamparije}}</td>
+                  <td>{{p.cenaUkupno}} din</td>
+                  <td>{{p.rokIsporukeDana}}</td>
+                </tr>
+              }
+              @if (detaljiNabavke.ponude.length === 0) {
+                <tr><td colspan="3">Nema pristiglih ponuda.</td></tr>
+              }
+            </table>
+          </td>
+        </tr>
+      }
+    }
+    @if (nabavke.length === 0) {
+      <tr><td colspan="5">Trenutno nemate nijednu nabavku.</td></tr>
+    }
+  </table>
+</div>

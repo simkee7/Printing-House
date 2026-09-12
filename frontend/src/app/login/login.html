@@ -1,0 +1,24 @@
+<div class="card">
+  <h3 class="section-title">Prijava</h3>
+
+  <div class="form-group">
+    <label class="form-label" for="login-username">Korisnicko ime</label>
+    <input id="login-username" type="text" [(ngModel)]="username">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="login-password">Lozinka</label>
+    <input id="login-password" type="password" [(ngModel)]="password">
+  </div>
+
+  <div class="actions">
+    <button (click)="login()">Prijavi se</button>
+  </div>
+
+  <p class="hint login-links">
+    @if (!isAdminUrl) {
+      <a routerLink="register">Registruj se</a> &middot;
+    }
+    <a routerLink="/zaboravljenaLozinka">Zaboravljena lozinka?</a>
+  </p>
+</div>
